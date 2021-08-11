@@ -5,14 +5,15 @@ data$Class = as.numeric(as.factor(data$Class))
 # Load packages
 library(factoextra)
 
-B <- data$Area
-C <- data$Perimeter
-D <- data$MajorAxisLength
-E <- data$MinorAxisLength
-F <- data$AspectRation
-G <- data$Eccentricity
-H <- data$ConvexArea
-I <- data$EquivDiameter
+# set column names to varible name
+B<- data$Area
+C<-data$Perimeter
+D<-data$MajorAxisLength
+E<-data$MinorAxisLength
+F<-data$AspectRation
+G<-data$Eccentricity
+H<-data$ConvexArea
+I<-data$EquivDiameter
 J <- data$Extent
 K <- data$Solidity
 L <- data$roundness
@@ -21,7 +22,6 @@ N <- data$ShapeFactor1
 O <- data$ShapeFactor1
 P <- data$ShapeFactor2
 Q <- data$ShapeFactor4
-class <- data$Class
 
 
 #normalize data
@@ -87,19 +87,17 @@ P <-(P-meanP)/sdP
 
 meanQ <- mean(Q)
 sdQ <- sd(Q)
-Q <-(Q-meanQ)/sdQ
+Q <-(P-meanQ)/sdQ
 
-beannormal <- data.frame(B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,class)
-colnames(beannormal) <- c("B","C","D","E","F","G","H",'I',"J","K","L","M","N","O","P","Q",'Class')
-
-
+beannormal <- data.frame(B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)
+colnames(beannormal) <- c("B","C","D","E","F","G","H",'I',"J","K","L","M","N","O","P","Q")
 
 # Compute PCA
-res.pca <- prcomp(beannormal[c(1:16)], center = T, scale. = T)
+res.pca <- prcomp(beannormal[,-17], center = T, scale. = T)
 
 # Eigenvalues
 eig.val <- get_eigenvalue(res.pca)
- 
+
 stop()
 print(res.pca)
 plot(res.pca)
