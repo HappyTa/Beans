@@ -86,7 +86,7 @@ sdQ <- sd(Q)
 Q <-(P-meanQ)/sdQ
 
 data1 <- data.frame(B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)
-colnames(data1) <- c("B","C","D","E","F","G","H","J","K","L","M","N","O","P","Q")
+colnames(data1) <- c("B","C","D","E","F","G","H",'I',"J","K","L","M","N","O","P","Q")
 
 #rownames(data1) <- c("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16")
 #Different way to calculate covariance matrix
