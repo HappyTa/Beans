@@ -5,14 +5,14 @@ data$Class = as.numeric(as.factor(data$Class))
 # Load packages
 library(factoextra)
 
-B<- data$Area
-C<-data$Perimeter
-D<-data$MajorAxisLength
-E<-data$MinorAxisLength
-F<-data$AspectRation
-G<-data$Eccentricity
-H<-data$ConvexArea
-I<-data$EquivDiameter
+B <- data$Area
+C <- data$Perimeter
+D <- data$MajorAxisLength
+E <- data$MinorAxisLength
+F <- data$AspectRation
+G <- data$Eccentricity
+H <- data$ConvexArea
+I <- data$EquivDiameter
 J <- data$Extent
 K <- data$Solidity
 L <- data$roundness
@@ -87,25 +87,24 @@ P <-(P-meanP)/sdP
 
 meanQ <- mean(Q)
 sdQ <- sd(Q)
-Q <-(P-meanQ)/sdQ
+Q <-(Q-meanQ)/sdQ
 
 beannormal <- data.frame(B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,class)
 colnames(beannormal) <- c("B","C","D","E","F","G","H",'I',"J","K","L","M","N","O","P","Q",'Class')
 
 
 
-# # Compute PCA
-# res.pca <- prcomp(beannormal, scale = TRUE)
-# 
-# 
-# #visualizes the eigen values Show the percentage of variances explained by each principal component.
-# fviz_eig(res.pca)
-# 
-# # Eigenvalues
-# eig.val <- get_eigenvalue(res.pca)
-# 
-# # plot pc1 & pc2
-# plot(res.pca$x[,1],res.pca$x[,2], xlab="PC1 (80%)", ylab = "PC2 (8%)", main = "PC1 / PC2 - plot")
+# Compute PCA
+res.pca <- prcomp(beannormal[c(1:16)], center = T, scale. = T)
+
+# Eigenvalues
+eig.val <- get_eigenvalue(res.pca)
+ 
+stop()
+print(res.pca)
+plot(res.pca)
+biplot(res.pca,col=c("blue","red"))
+dev.off()
 
 
 
