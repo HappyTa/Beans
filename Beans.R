@@ -1,5 +1,6 @@
 setwd("~/GitHub/Beans/WD")
 data = read.csv('subsettedBeans.csv', as.is = T)
+data$Class = as.numeric(as.factor(data$Class))
 
 # Load packages
 library(factoextra)
@@ -20,6 +21,7 @@ N <- data$ShapeFactor1
 O <- data$ShapeFactor1
 P <- data$ShapeFactor2
 Q <- data$ShapeFactor4
+class <- data$Class
 
 
 #normalize data
@@ -87,19 +89,23 @@ meanQ <- mean(Q)
 sdQ <- sd(Q)
 Q <-(P-meanQ)/sdQ
 
-beannormal <- data.frame(B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)
-colnames(beannormal) <- c("B","C","D","E","F","G","H","J","K","L","M","N","O","P","Q")
+beannormal <- data.frame(B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,class)
+colnames(beannormal) <- c("B","C","D","E","F","G","H",'I',"J","K","L","M","N","O","P","Q",'Class')
 
 
-data$Class = as.numeric(as.factor(data$Class))
-# Compute PCA
-res.pca <- prcomp(data, scale = TRUE)
 
-
-#visualizes the eigen values Show the percentage of variances explained by each principal component.
-fviz_eig(res.pca)
-
-
+# # Compute PCA
+# res.pca <- prcomp(beannormal, scale = TRUE)
+# 
+# 
+# #visualizes the eigen values Show the percentage of variances explained by each principal component.
+# fviz_eig(res.pca)
+# 
+# # Eigenvalues
+# eig.val <- get_eigenvalue(res.pca)
+# 
+# # plot pc1 & pc2
+# plot(res.pca$x[,1],res.pca$x[,2], xlab="PC1 (80%)", ylab = "PC2 (8%)", main = "PC1 / PC2 - plot")
 
 
 
