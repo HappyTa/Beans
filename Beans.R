@@ -37,7 +37,7 @@ D<- (D-meanD )/stD
 
 meanE <- mean(E)
 stE <- sd(E)
-E<- (E-mean )/stE
+E<- (E-meanE )/stE
 
 meanF <- mean(F)
 stF <- sd(F)
