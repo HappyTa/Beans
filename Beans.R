@@ -1,17 +1,18 @@
 setwd("~/GitHub/Beans/WD")
 data = read.csv('subsettedBeans.csv', as.is = T)
+data$Class = as.numeric(as.factor(data$Class))
 
 # Load packages
 library(factoextra)
 
-B<- data$Area
-C<-data$Perimeter
-D<-data$MajorAxisLength
-E<-data$MinorAxisLength
-F<-data$AspectRation
-G<-data$Eccentricity
-H<-data$ConvexArea
-I<-data$EquivDiameter
+B <- data$Area
+C <- data$Perimeter
+D <- data$MajorAxisLength
+E <- data$MinorAxisLength
+F <- data$AspectRation
+G <- data$Eccentricity
+H <- data$ConvexArea
+I <- data$EquivDiameter
 J <- data$Extent
 K <- data$Solidity
 L <- data$roundness
@@ -20,6 +21,7 @@ N <- data$ShapeFactor1
 O <- data$ShapeFactor1
 P <- data$ShapeFactor2
 Q <- data$ShapeFactor4
+class <- data$Class
 
 
 #normalize data
@@ -85,21 +87,24 @@ P <-(P-meanP)/sdP
 
 meanQ <- mean(Q)
 sdQ <- sd(Q)
-Q <-(P-meanQ)/sdQ
+Q <-(Q-meanQ)/sdQ
 
-beannormal <- data.frame(B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)
-colnames(beannormal) <- c("B","C","D","E","F","G","H","J","K","L","M","N","O","P","Q")
+beannormal <- data.frame(B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,class)
+colnames(beannormal) <- c("B","C","D","E","F","G","H",'I',"J","K","L","M","N","O","P","Q",'Class')
 
 
-data$Class = as.numeric(as.factor(data$Class))
+
 # Compute PCA
-res.pca <- prcomp(data, scale = TRUE)
+res.pca <- prcomp(beannormal[c(1:16)], center = T, scale. = T)
 
-
-#visualizes the eigen values Show the percentage of variances explained by each principal component.
-fviz_eig(res.pca)
-
-
+# Eigenvalues
+eig.val <- get_eigenvalue(res.pca)
+ 
+stop()
+print(res.pca)
+plot(res.pca)
+biplot(res.pca,col=c("blue","red"))
+dev.off()
 
 
 
