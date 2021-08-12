@@ -1,5 +1,9 @@
-setwd("~/GitHub/Beans/WD")
-data = read.csv('subsettedBeans.csv', as.is = T)
+#setwd("~/GitHub/Beans/WD")
+setwd("C:/Users/mortimerk1/Desktop/Year 3/Summer 2021/Machine Learning/Final Project/Beans/WD")
+
+data = read.csv('subsettedBeansNoColumns.csv', as.is = T)
+
+#data$Class = as.numeric(as.factor(data$Class))
 
 # set column names to varible name
 B<- data$Area
@@ -123,21 +127,8 @@ print(pc1)
 #since it has the least amount of variability and hence is not informative or it is not an important feature. 
 
 
-#next command gives you the values that were used to normalize the data
-#which needs to be done for PCA except does not need to be done for the output
-center <- heptathlon_pca$center
-scale <- heptathlon_pca$scale
-#the next line is use the linear combination for principle component to do regression
-#You can use PCA to domutiple linear regression
-pred <- predict(heptathlon_pca)[,1]
-print(pred)
-corscore <- cor(heptathlon$score, pred)
-#this correlation coefficient lets us know how good we did with our prediction
-print(corscore)
 #this next one does a biplot which I talked about briefly in the video
-plot(heptathlon_pca)
+plot(data_pca)
 pdf("biplot_PC1_PC2.pdf")
-biplot(heptathlon_pca,col=c("gray","black"))
+biplot(data_pca,col=c("gray","black"))
 dev.off()
-
-
