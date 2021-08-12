@@ -1,14 +1,14 @@
 setwd("~/GitHub/Beans/WD")
 #setwd("C:/Users/mortimerk1/Desktop/Year 3/Summer 2021/Machine Learning/Final Project/Beans/WD")
 
-data = read.csv('subsettedBeansNoColumns.csv', as.is = T)
+data = read.csv('FullBeans2.csv', as.is = T)
 #data = read.csv('FullBeans2.csv', as.is = T)
 #colnames(data)[1] <- gsub('i..','',colnames(df)[1])
 
 #data$Class = as.numeric(as.factor(data$Class))
 
 # set column names to varible name
-B<- data$Area
+B<- data[,1]
 C<-data$Perimeter
 D<-data$MajorAxisLength
 E<-data$MinorAxisLength
@@ -120,7 +120,34 @@ print(data_pca)
 
 #this gets the first principle component
 pc1 <- data_pca$rotation[,1]
+pc2 <- data_pca$rotation[,2]
 print(pc1)
+print(pc2)
+
+# Graph pc1 & pc2
+pc1 <- abs(pc1)
+pc2 <- abs(pc2)
+tblPC1 <- table(pc1)
+
+ 
+barplot(pc1,main='PC1', xlab = 'attributes', names.arg = c('Area','Per',
+                                                           'MAL','MiAL',
+                                                           'AR','Ecc',
+                                                           'CA','EqD',
+                                                           'E','S',
+                                                           'roundess','C',
+                                                           'SF1','SF2',
+                                                           'SF3','SF4'))
+
+# barplot(pc2,main='PC2', xlab = 'attributes', names.arg = c('Area','Per',
+#                                                            'MAL','MiAL',
+#                                                            'AR','Ecc',
+#                                                            'CA','EqD',
+#                                                            'E','S',
+#                                                            'roundess','C',
+#                                                            'SF1','SF2',
+#                                                            'SF3','SF4'))
+
 
 
 #for the last command when I print out the first principle component you should notice that
@@ -132,5 +159,5 @@ print(pc1)
 #this next one does a biplot which I talked about briefly in the video
 plot(data_pca)
 pdf("biplot_PC1_PC2.pdf")
-biplot(data_pca,col=c("gray","black"))
+biplot(data_pca,col=c("Blue","black"))
 dev.off()
