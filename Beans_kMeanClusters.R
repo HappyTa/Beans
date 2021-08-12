@@ -1,10 +1,13 @@
-setwd("~/GitHub/Beans/WD")
-#setwd("C:/Users/mortimerk1/Desktop/Year 3/Summer 2021/Machine Learning/Final Project/Beans/WD")
+#setwd("~/GitHub/Beans/WD")
+setwd("C:/Users/mortimerk1/Desktop/Year 3/Summer 2021/Machine Learning/Final Project/Beans/WD")
 
-data = read.csv('subsettedBeansNoColumns.csv', as.is = T)
-#data = read.csv('FullBeans.csv', as.is = T)
+#data = read.csv('subsettedBeansNoColumns.csv', as.is = T)
+data = read.csv('FullBeans2.csv', as.is = T)
 
-B<- data$Area
+
+data = data[,-which(names(data) %in% c("Extent","Solidity"))]
+
+B<- data[,1]
 C<-data$Perimeter
 D<-data$MajorAxisLength
 E<-data$MinorAxisLength
@@ -12,8 +15,8 @@ F<-data$AspectRation
 G<-data$Eccentricity
 H<-data$ConvexArea
 I<-data$EquivDiameter
-J <- data$Extent
-K <- data$Solidity
+#J <- data$Extent
+#K <- data$Solidity
 L <- data$roundness
 M <- data$Compactness
 N <- data$ShapeFactor1
@@ -54,14 +57,14 @@ H <- (H-meanH)/stH
 meanI <- mean(I)
 stI <- sd(I)
 I <- (I-meanI )/stI
-
-meanJ <- mean(J)
-sdJ <- sd(J)
-J <-(J-meanJ)/sdJ
-
-meanK <- mean(K)
-sdK <- sd(K)
-K <-(K-meanK)/sdK
+# 
+# meanJ <- mean(J)
+# sdJ <- sd(J)
+# J <-(J-meanJ)/sdJ
+# 
+# meanK <- mean(K)
+# sdK <- sd(K)
+# K <-(K-meanK)/sdK
 
 meanL <- mean(L)
 sdL <- sd(L)
@@ -87,11 +90,16 @@ meanQ <- mean(Q)
 sdQ <- sd(Q)
 Q <-(P-meanQ)/sdQ
 
-data1 <- data.frame(B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)
-colnames(data1) <- c("B","C","D","E","F","G","H",'I',"J","K","L","M","N","O","P","Q")
+#data1 <- data.frame(B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)
+#colnames(data1) <- c("B","C","D","E","F","G","H",'I',"J","K","L","M","N","O","P","Q")
 
-clusters = kmeans(data1, 2, nstart = 2, algorithm = "Lloyd", iter.max = 1000)
+data2 <- data.frame(B,C,D,E,F,G,H,I,L,M,N,O,P,Q)
+colnames(data2) <- c("B","C","D","E","F","G","H",'I',"L","M","N","O","P","Q")
+
+clusters = kmeans(data2, 7, nstart = 7, algorithm = "Lloyd", iter.max = 1000)
 
 centers = clusters$centers
 
 print(centers)
+
+centers2 <- data.frame(centers)
