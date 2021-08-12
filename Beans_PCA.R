@@ -1,7 +1,9 @@
-#setwd("~/GitHub/Beans/WD")
-setwd("C:/Users/mortimerk1/Desktop/Year 3/Summer 2021/Machine Learning/Final Project/Beans/WD")
+setwd("~/GitHub/Beans/WD")
+#setwd("C:/Users/mortimerk1/Desktop/Year 3/Summer 2021/Machine Learning/Final Project/Beans/WD")
 
 data = read.csv('subsettedBeansNoColumns.csv', as.is = T)
+#data = read.csv('FullBeans2.csv', as.is = T)
+#colnames(data)[1] <- gsub('i..','',colnames(df)[1])
 
 #data$Class = as.numeric(as.factor(data$Class))
 
