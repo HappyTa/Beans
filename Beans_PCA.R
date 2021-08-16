@@ -121,6 +121,14 @@ print(data_pca)
 #this gets the first principle component
 pc1 <- data_pca$rotation[,1]
 pc2 <- data_pca$rotation[,2]
+pc3 <- data_pca$rotation[,3]
+
+pc1wavg = pc1*0.5547
+pc2wavg = pc2*0.2643
+pc3wavg = pc3*0.0801
+wavg = pc1wavg+pc2wavg+pc3wavg
+
+
 print(pc1)
 print(pc2)
 
@@ -147,6 +155,16 @@ barplot(pc1,main='PC1', xlab = 'attributes', names.arg = c('Area','Per',
 #                                                            'roundess','C',
 #                                                            'SF1','SF2',
 #                                                            'SF3','SF4'))
+
+wavg <- abs(wavg)
+barplot(wavg,main='Weighted Average', xlab = 'attributes', names.arg = c('Area','Per',
+                                                           'MAL','MiAL',
+                                                           'AR','Ecc',
+                                                           'CA','EqD',
+                                                           'E','S',
+                                                           'roundess','C',
+                                                           'SF1','SF2',
+                                                           'SF3','SF4'))
 
 
 
