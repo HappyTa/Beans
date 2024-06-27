@@ -1,5 +1,5 @@
-setwd("~/GitHub/Beans/WD")
-#setwd("C:/Users/mortimerk1/Desktop/Year 3/Summer 2021/Machine Learning/Final Project/Beans/WD")
+# setwd("~/GitHub/Beans/WD")
+setwd("G:/Repos/Beans/WD")
 
 #data = read.csv('subsettedBeansNoColumns.csv', as.is = T)
 data = read.csv('FullBeans2.csv', as.is = T)
@@ -106,7 +106,6 @@ centers = clusters$centers
 print(centers)
 
 centers2 <- data.frame(centers)
-
 
 plot(centers[,1],centers[,2])
 plot(centers[,1],centers[,3])
